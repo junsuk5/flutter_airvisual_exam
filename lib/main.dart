@@ -68,7 +68,7 @@ class _NearestCityState extends State<NearestCity> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                      color: Colors.yellow,
+                      color: getColor(_result),
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -125,5 +125,17 @@ class _NearestCityState extends State<NearestCity> {
         ),
       ),
     );
+  }
+
+  Color getColor(AirResult result) {
+    if (result.data.current.pollution.aqius <= 50) {
+      return Colors.greenAccent;
+    } else if (result.data.current.pollution.aqius <= 100) {
+      return Colors.yellow;
+    } else if (result.data.current.pollution.aqius <= 150) {
+      return Colors.orange;
+    } else {
+      return Colors.redAccent;
+    }
   }
 }
