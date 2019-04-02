@@ -106,7 +106,7 @@ class Weather {
   int pr;
   int tp;
   int wd;
-  double ws;
+  dynamic ws;
   String updatedAt;
 
   Weather(

@@ -52,76 +52,78 @@ class _NearestCityState extends State<NearestCity> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                '현재 위치 미세먼지',
-                style: TextStyle(fontSize: 30),
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              Card(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+          child: _result == null
+              ? CircularProgressIndicator()
+              : Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Container(
-                      color: getColor(_result),
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Text(
+                      '현재 위치 미세먼지',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Card(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text('얼굴사진'),
-                          _result == null
-                              ? Text('측정중')
-                              : Text(
-                                  '${_result.data.current.pollution.aqius}',
-                                  style: TextStyle(fontSize: 40),
+                          Container(
+                            color: getColor(_result),
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Text('얼굴사진'),
+                                _result == null
+                                    ? Text('측정중')
+                                    : Text(
+                                        '${_result.data.current.pollution.aqius}',
+                                        style: TextStyle(fontSize: 40),
+                                      ),
+                                Text(
+                                  '보통',
+                                  style: TextStyle(fontSize: 20),
                                 ),
-                          Text(
-                            '보통',
-                            style: TextStyle(fontSize: 20),
+                              ],
+                            ),
                           ),
+                          Container(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: <Widget>[
+                                Row(
+                                  children: <Widget>[
+                                    Image.network(
+                                      'https://airvisual.com/images/${_result.data.current.weather.ic}.png',
+                                      width: 32,
+                                      height: 32,
+                                    ),
+                                    SizedBox(
+                                      width: 16,
+                                    ),
+                                    Text(
+                                      '${_result.data.current.weather.tp}°',
+                                      style: TextStyle(fontSize: 16),
+                                    )
+                                  ],
+                                ),
+                                Text(
+                                  '습도 ${_result.data.current.weather.hu}%',
+                                ),
+                                Text(
+                                  '풍속 ${_result.data.current.weather.ws}m/s',
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              Image.network(
-                                'https://airvisual.com/images/${_result.data.current.weather.ic}.png',
-                                width: 32,
-                                height: 32,
-                              ),
-                              SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                '${_result.data.current.weather.tp}°',
-                                style: TextStyle(fontSize: 16),
-                              )
-                            ],
-                          ),
-                          Text(
-                            '습도 ${_result.data.current.weather.hu}%',
-                          ),
-                          Text(
-                            '풍속 ${_result.data.current.weather.ws}m/s',
-                          ),
-                        ],
-                      ),
-                    )
                   ],
                 ),
-              ),
-            ],
-          ),
         ),
       ),
     );
