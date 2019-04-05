@@ -8,6 +8,7 @@
 import 'dart:convert' as convert;
 
 import 'package:flutter_airvisual/src/models/models.dart';
+import 'package:flutter_airvisual/src/resources/air_api_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,5 +27,12 @@ void main() {
 
     AirResult result = AirResult.fromJson(jsonResponse);
     expect(result.data.current.pollution, 57);
+  });
+
+  test('AirApiProvider test', () async {
+    AirApiProvider provider = AirApiProvider();
+    AirResult result = await provider.fetchAirResult();
+
+    expect(result.status, 'success');
   });
 }
