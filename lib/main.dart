@@ -62,7 +62,7 @@ class _NearestCityState extends State<NearestCity> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Container(
-                color: getColor(result),
+                color: _getColor(result),
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -75,7 +75,7 @@ class _NearestCityState extends State<NearestCity> {
                             style: TextStyle(fontSize: 40),
                           ),
                     Text(
-                      '보통',
+                      _getStatusString(result),
                       style: TextStyle(fontSize: 20),
                     ),
                   ],
@@ -114,11 +114,40 @@ class _NearestCityState extends State<NearestCity> {
             ],
           ),
         ),
+        SizedBox(
+          height: 16,
+        ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(30),
+          child: RaisedButton(
+            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50),
+            color: Colors.orange,
+            child: Icon(
+              Icons.refresh,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              airBloc.fetch();
+            },
+          ),
+        )
       ],
     );
   }
 
-  Color getColor(AirResult result) {
+  String _getStatusString(AirResult result) {
+    if (result.data.current.pollution.aqius <= 50) {
+      return '좋음';
+    } else if (result.data.current.pollution.aqius <= 100) {
+      return '보통';
+    } else if (result.data.current.pollution.aqius <= 150) {
+      return '나쁨';
+    } else {
+      return '최악';
+    }
+  }
+
+  Color _getColor(AirResult result) {
     if (result.data.current.pollution.aqius <= 50) {
       return Colors.greenAccent;
     } else if (result.data.current.pollution.aqius <= 100) {
