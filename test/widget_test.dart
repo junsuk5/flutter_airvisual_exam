@@ -26,7 +26,7 @@ void main() {
     expect(code, 'success');
 
     AirResult result = AirResult.fromJson(jsonResponse);
-    expect(result.data.current.pollution, 57);
+    expect(result.data.current.pollution.aqius, 63);
   });
 
   test('AirApiProvider test', () async {
