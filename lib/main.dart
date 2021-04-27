@@ -119,16 +119,15 @@ class _NearestCityState extends State<NearestCity> {
         ),
         ClipRRect(
           borderRadius: BorderRadius.circular(30),
-          child: RaisedButton(
-            padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 50),
-            color: Colors.orange,
-            child: Icon(
-              Icons.refresh,
-              color: Colors.white,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40.0)))
+                .copyWith(
+              backgroundColor: MaterialStateProperty.all(Colors.orange),
             ),
-            onPressed: () {
-              airBloc.fetch();
-            },
+            child: Icon(Icons.refresh, color: Colors.white, size: 30.0),
+            onPressed: () {},
           ),
         )
       ],
@@ -142,9 +141,8 @@ class _NearestCityState extends State<NearestCity> {
       return '보통';
     } else if (result.data.current.pollution.aqius <= 150) {
       return '나쁨';
-    } else {
-      return '최악';
     }
+    return '최악';
   }
 
   Color _getColor(AirResult result) {

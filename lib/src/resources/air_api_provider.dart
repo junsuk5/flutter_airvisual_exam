@@ -4,11 +4,11 @@ import 'dart:async';
 import 'dart:convert' as convert;
 
 class AirApiProvider {
-  final _apiKey = 'YKK6AtsGKLrRZyJht';
+  final _apiKey = '36ff6fed-03b3-4c7b-b244-6df0158197cd';
   final _baseUrl = 'https://api.airvisual.com/v2/';
 
   Future<AirResult> fetchAirResult() async {
-    final response = await http.get('${_baseUrl}nearest_city?key=${_apiKey}');
+    final response = await http.get(Uri.parse('${_baseUrl}nearest_city?key=$_apiKey'));
 
     if (response.statusCode != 200) {
       throw StateError('네트워크 에러 status code : ${response.statusCode}');

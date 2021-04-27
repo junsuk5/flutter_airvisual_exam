@@ -14,9 +14,11 @@ import 'package:http/http.dart' as http;
 
 void main() {
   test('http 통신 테스트', () async {
-    var url = 'https://api.airvisual.com/v2/nearest_city?key=YKK6AtsGKLrRZyJht';
+    var url = 'https://api.airvisual.com/v2/nearest_city?key=36ff6fed-03b3-4c7b-b244-6df0158197cd';
 
-    var response = await http.get(url);
+    final uri = Uri.parse(url);
+
+    var response = await http.get(uri);
 
     expect(response.statusCode, 200);
 
@@ -26,7 +28,7 @@ void main() {
     expect(code, 'success');
 
     AirResult result = AirResult.fromJson(jsonResponse);
-    expect(result.data.current.pollution, 57);
+    expect(result.data.current.pollution.aqius, 59);
   });
 
   test('AirApiProvider test', () async {
