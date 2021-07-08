@@ -1,6 +1,6 @@
 class AirResult {
-  String status;
-  Data data;
+  String? status;
+  Data?/*?*/ data;
 
   AirResult({this.status, this.data});
 
@@ -13,18 +13,18 @@ class AirResult {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['status'] = this.status;
     if (this.data != null) {
-      data['data'] = this.data.toJson();
+      data['data'] = this.data!.toJson();
     }
     return data;
   }
 }
 
 class Data {
-  String city;
-  String state;
-  String country;
-  Location location;
-  Current current;
+  String? city;
+  String? state;
+  String? country;
+  Location? location;
+  Current? current;
 
   Data({this.city, this.state, this.country, this.location, this.current});
 
@@ -45,18 +45,18 @@ class Data {
     data['state'] = this.state;
     data['country'] = this.country;
     if (this.location != null) {
-      data['location'] = this.location.toJson();
+      data['location'] = this.location!.toJson();
     }
     if (this.current != null) {
-      data['current'] = this.current.toJson();
+      data['current'] = this.current!.toJson();
     }
     return data;
   }
 }
 
 class Location {
-  String type;
-  List<double> coordinates;
+  String? type;
+  List<double>? coordinates;
 
   Location({this.type, this.coordinates});
 
@@ -74,8 +74,8 @@ class Location {
 }
 
 class Current {
-  Weather weather;
-  Pollution pollution;
+  Weather? weather;
+  Pollution? pollution;
 
   Current({this.weather, this.pollution});
 
@@ -90,24 +90,24 @@ class Current {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (this.weather != null) {
-      data['weather'] = this.weather.toJson();
+      data['weather'] = this.weather!.toJson();
     }
     if (this.pollution != null) {
-      data['pollution'] = this.pollution.toJson();
+      data['pollution'] = this.pollution!.toJson();
     }
     return data;
   }
 }
 
 class Weather {
-  String ts;
-  int hu;
-  String ic;
-  int pr;
-  int tp;
-  int wd;
+  String? ts;
+  int? hu;
+  String? ic;
+  int? pr;
+  int? tp;
+  int? wd;
   dynamic ws;
-  String updatedAt;
+  String? updatedAt;
 
   Weather(
       {this.ts,
@@ -145,11 +145,11 @@ class Weather {
 }
 
 class Pollution {
-  String ts;
-  int aqius;
-  String mainus;
-  int aqicn;
-  String maincn;
+  String? ts;
+  int? aqius;
+  String? mainus;
+  int? aqicn;
+  String? maincn;
 
   Pollution({this.ts, this.aqius, this.mainus, this.aqicn, this.maincn});
 

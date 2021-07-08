@@ -36,7 +36,7 @@ class _NearestCityState extends State<NearestCity> {
                 stream: airBloc.airResult,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
-                    return _buildItem(snapshot.data);
+                    return _buildItem(snapshot.data!);
                   } else {
                     return CircularProgressIndicator();
                   }
@@ -71,7 +71,7 @@ class _NearestCityState extends State<NearestCity> {
                     result == null
                         ? Text('측정중')
                         : Text(
-                            '${result.data.current.pollution.aqius}',
+                            '${result.data!.current!.pollution!.aqius}',
                             style: TextStyle(fontSize: 40),
                           ),
                     Text(
@@ -89,7 +89,7 @@ class _NearestCityState extends State<NearestCity> {
                     Row(
                       children: <Widget>[
                         Image.network(
-                          'https://airvisual.com/images/${result.data.current.weather.ic}.png',
+                          'https://airvisual.com/images/${result.data!.current!.weather!.ic}.png',
                           width: 32,
                           height: 32,
                         ),
@@ -97,16 +97,16 @@ class _NearestCityState extends State<NearestCity> {
                           width: 16,
                         ),
                         Text(
-                          '${result.data.current.weather.tp}°',
+                          '${result.data!.current!.weather!.tp}°',
                           style: TextStyle(fontSize: 16),
                         )
                       ],
                     ),
                     Text(
-                      '습도 ${result.data.current.weather.hu}%',
+                      '습도 ${result.data!.current!.weather!.hu}%',
                     ),
                     Text(
-                      '풍속 ${result.data.current.weather.ws}m/s',
+                      '풍속 ${result.data!.current!.weather!.ws}m/s',
                     ),
                   ],
                 ),
@@ -135,22 +135,22 @@ class _NearestCityState extends State<NearestCity> {
   }
 
   String _getStatusString(AirResult result) {
-    if (result.data.current.pollution.aqius <= 50) {
+    if (result.data!.current!.pollution!.aqius! <= 50) {
       return '좋음';
-    } else if (result.data.current.pollution.aqius <= 100) {
+    } else if (result.data!.current!.pollution!.aqius! <= 100) {
       return '보통';
-    } else if (result.data.current.pollution.aqius <= 150) {
+    } else if (result.data!.current!.pollution!.aqius! <= 150) {
       return '나쁨';
     }
     return '최악';
   }
 
   Color _getColor(AirResult result) {
-    if (result.data.current.pollution.aqius <= 50) {
+    if (result.data!.current!.pollution!.aqius! <= 50) {
       return Colors.greenAccent;
-    } else if (result.data.current.pollution.aqius <= 100) {
+    } else if (result.data!.current!.pollution!.aqius! <= 100) {
       return Colors.yellow;
-    } else if (result.data.current.pollution.aqius <= 150) {
+    } else if (result.data!.current!.pollution!.aqius! <= 150) {
       return Colors.orange;
     } else {
       return Colors.redAccent;
